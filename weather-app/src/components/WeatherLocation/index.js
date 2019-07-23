@@ -18,13 +18,12 @@ const data ={
     wind: '10 m/s',
 }
 
-const data2 ={
-    temperature: 10,
-    weatherState: CLOUDY,
-    humidity: 15,
-    wind: '20 m/s',
-}
+const location ="Buenos Aires,ar";
+const api_key ="2856124217d1a6c58a5f28e2f10e3b54";
+const url_base_weather ="http://api.openweathermap.org/data/2.5/weather";
 
+
+const api_weather = `${url_base_weather}?q=${location}&appid=${api_key}`;
 class WeatherLocation extends Component {
 
     constructor(){
@@ -34,13 +33,38 @@ class WeatherLocation extends Component {
             data: data,
         };
     }
+
+    getWeatherState = weather_data =>{
+        return RAIN;
+    }
+
+getData = weather_data =>{
+    const {humidity, temp} = weather_data.main;
+    const {speed} = weather_data.wind;
+    const weatherState = this.getWeatherState(weather_data);
+
+    const data = {
+        humidity,
+        temperature: temp,
+        weatherState,
+        wind: `${speed} m/s`,
+    }
+    return data;
+}
+
     handleUpdateClick =() =>{
         console.log('Updated');
-        
-        this.setState( {
-            city: 'Tuluá',
-            data:data2
-        });
+         fetch(api_weather).then( resolve => {
+             
+             return resolve.json();
+         }).then(data => {
+             const newWeather = this.getData(data);
+             console.log(newWeather);
+             debugger;
+             this.setState({
+                 data: newWeather
+             });
+         });
     }
     render(){
         const {city, data} = this.state;
