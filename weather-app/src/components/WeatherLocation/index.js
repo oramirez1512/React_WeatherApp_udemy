@@ -4,22 +4,6 @@ import WeatherData from './WeatherData';
 import './styles.css';
 import {api_weather} from './../../constants/api_url'; 
 import transformWeather from './../../services/transformWeather';
-import {
-    CLOUD,
-    DAY_SUNNY,
-    CLOUDY,
-    RAIN,
-    SNOW,
-    WINDY,
-
-} from './../../constants/Weather';
-const data ={
-    temperature: 15,
-    weatherState: RAIN,
-    humidity: 10,
-    wind: '10 m/s',
-}
-
 
 
 class WeatherLocation extends Component {
@@ -28,18 +12,32 @@ class WeatherLocation extends Component {
         super();
         this.state ={
             city: 'Cali',
-            data: data,
+            data: null,
         };
+        console.log("constructor");
     };
 
     
 
-    handleUpdateClick =() =>{
+componentDidMount() {
+console.log("componentDidMount");
+this.handleUpdateClick();
+}
+
+componentDidUpdate(prevProps, prevState) {
+  console.log("componentDidUpdate");  
+  
+}
+
+
+
+    handleUpdateClick =() =>{        
         console.log('Updated');
          fetch(api_weather).then( resolve => {
              
              return resolve.json();
          }).then(data => {
+            console.log("result of handleUpdateClick");
              const newWeather = transformWeather(data);
              console.log(newWeather);
              debugger;
@@ -49,11 +47,14 @@ class WeatherLocation extends Component {
          });
     }
     render(){
+        console.log("render");
         const {city, data} = this.state;
         return (<div className ="weatherLocationCont">
         <Location city={city}></Location>
-        <WeatherData data = {data}></WeatherData>
-        <button onClick ={this.handleUpdateClick}>Update</button>
+        {data ?
+        <WeatherData data = {data}></WeatherData>:
+        "loading..."
+        }
         </div>);
     }
     
