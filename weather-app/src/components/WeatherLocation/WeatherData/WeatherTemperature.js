@@ -8,6 +8,8 @@ import {
     RAIN,
     SNOW,
     WINDY,
+    THUNDER,
+    DRIZZLE
 
 } from './../../../constants/Weather';
 import './styles.css';
@@ -18,6 +20,8 @@ const icons ={
     [RAIN]:"rain",
     [SNOW]:"snow",
     [WINDY]:"windy",
+    [THUNDER]: "day-thunderstore",
+    [DRIZZLE]: "day-showers",
     fog:"day-fog"
 };
 
