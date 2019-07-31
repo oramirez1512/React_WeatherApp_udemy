@@ -51,9 +51,10 @@ componentDidUpdate(prevProps, prevState) {
          });
     }
     render(){
+        const {onWeatherLocationClick} =this.props;
         console.log("render");
         const {city, data} = this.state;
-        return (<div className ="weatherLocationCont">
+        return (<div className ="weatherLocationCont" onClick ={onWeatherLocationClick}>
         <Location city={city}></Location>
         {data ?
         <WeatherData data = {data}></WeatherData>:
@@ -66,5 +67,6 @@ componentDidUpdate(prevProps, prevState) {
 
 WeatherLocation.propTypes = {
     city: PropTypes.string.isRequired,
+    onWeatherLocationClick: PropTypes.func,
 }
 export default WeatherLocation;
