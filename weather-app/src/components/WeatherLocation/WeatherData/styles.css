@@ -2,7 +2,7 @@
     background-color: rgba(200,200,200,05);
     width: 100%;
     height: 100px;
-    line-height: 100px;
+    line-height: 40px;
     border-radius: 5px;
     padding: 5px;
     box-sizing: border-box;
@@ -21,7 +21,7 @@
 
 }
 .temperature{
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     padding-left: 20px;
     color: #333;
@@ -40,5 +40,6 @@
 }
 
 .wicon {
+    font-size: 2em;
     color: rgb(255,72,0);
 }

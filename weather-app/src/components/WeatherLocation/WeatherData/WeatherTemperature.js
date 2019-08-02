@@ -26,7 +26,7 @@ const icons ={
 };
 
 const getWeatherIcon = (weatherstate) =>{
-    const sizeIcon ='4x';
+    const sizeIcon ='3px';
     const icon =icons[weatherstate];
     if(icon)
     {
