@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import ForecastItem from './ForecastItem'
+import ForecastItem from './ForecastItem';
+import transformForecast from './../services/transformForecast';
 import './styles.css';
 /*
 const days = [
@@ -19,7 +20,7 @@ const data = {
 */
 
 const api_key ="2856124217d1a6c58a5f28e2f10e3b54";
-const url_base_weather ="http://api.openweathermap.org/data/2.5/forecast";
+const url_base_forecast ="http://api.openweathermap.org/data/2.5/forecast";
 class ForecastExtended extends Component {
 
     constructor(){
@@ -28,11 +29,23 @@ class ForecastExtended extends Component {
     }
 
     componentDidMount(){
+        //fetch or axios
+        const url_forecast = `${url_base_forecast}?q=${this.props.city}&appid=${api_key}`;
         
+        fetch(url_forecast).then(
+            data => (data.json())
+        ).then(
+            weather_data =>{
+                console.log(weather_data);
+                const forecastData = transformForecast(weather_data);
+                console.log(forecastData);
+                this.setState({forecastData});
+            }
+        );
     }
 
     renderForecastItemDays(){
-        return "Render Items";
+        return <h1>Render Items</h1>;
         //return days.map(day => (<ForecastItem weekDay={day} hour={10} data ={data}></ForecastItem>));
     }
     renderProgress = () =>{
