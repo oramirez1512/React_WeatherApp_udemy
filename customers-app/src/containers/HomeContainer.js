@@ -1,9 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
 import AppFrame from '../components/AppFrame';
-import CustomerActions from '../components/customerActions';
-const HomeContainer = props => {
+import CustomerActions from '../components/CustomerActions';
+class  HomeContainer extends Component{
+    handleOnclick = () => {
+        console.log("Handle on Click");
+        this.props.history.push('/customers');
+    }
+    render(){
     return (
         <div>
             <AppFrame 
@@ -12,7 +16,7 @@ const HomeContainer = props => {
                 <div>
                     This is the main screen
                     <CustomerActions>
-                        <Link to ="\customers">Clients list</Link>
+                        <button onClick ={this.handleOnclick}>Clients list</button>                        
                     </CustomerActions>
                 </div>
             }>
@@ -21,9 +25,7 @@ const HomeContainer = props => {
         </div>
     );
 };
+}
 
-HomeContainer.propTypes = {
-    
-};
 
-export default HomeContainer;
+export default withRouter(HomeContainer);

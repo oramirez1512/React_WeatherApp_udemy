@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CustomerActions = ({ children }}) => {
+const CustomerActions = ({ children }) => {
     return (
         <div>
             <div className="customer-actions">
@@ -12,7 +12,7 @@ const CustomerActions = ({ children }}) => {
 };
 
 CustomerActions.propTypes = {
-    children: PropTypes.number.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default CustomerActions;

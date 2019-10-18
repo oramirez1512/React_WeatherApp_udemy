@@ -1,0 +1,1 @@
+export const FETC_CUSTOMERS = 'FETC_CUSTOMERS';
