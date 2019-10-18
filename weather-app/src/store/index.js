@@ -2,7 +2,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './../reducers';
 const initialState = {
-    city: 'Cali, Co'
+    city: 'Cali,co'
 };
 
 
