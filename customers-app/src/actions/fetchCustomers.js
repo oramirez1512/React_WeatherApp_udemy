@@ -1,21 +1,10 @@
 import {FETC_CUSTOMERS} from './../constants';
 import {createAction} from 'redux-actions';
+import { apiGet } from '../api';
+import { urlCustomers } from '../api/urls';
 
-const customers= [
-    {
-    "dni": "123456789",
-    "name": "oramirez",
-    "age": 24
-},
-{
-    "dni": "123456189",
-    "name": "Narcos",
-    "age": 25
-},{
-    "dni": "125456189",
-    "name": "aduran",
-    "age": 24
-}
-];
+const url ='http://localhost:3001/customers';
 
-export const fetchCustomers = createAction(FETC_CUSTOMERS, () => customers);
+
+
+export const fetchCustomers = createAction(FETC_CUSTOMERS, apiGet(urlCustomers));

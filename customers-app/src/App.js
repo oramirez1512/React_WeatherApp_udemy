@@ -1,7 +1,8 @@
 import React , {Component} from 'react';
-import {Link, BrowserRouter as Router, Route} from 'react-router-dom';
+import {Link, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer'
 import CustomersContainer from './containers/CustomersContainer';
+import CustomerContainer from './containers/CustomerContainer';
 import './App.css';
 
 class App extends Component {
@@ -14,6 +15,9 @@ class App extends Component {
     <div className="App">
       <Route exact path="/" component={HomeContainer}/>
       <Route exact path="/customers" component={CustomersContainer} />
+      <Switch>
+        <Route path="/customers/:dni" component={CustomerContainer}></Route>
+      </Switch>
     </div>
     </Router>
   );
